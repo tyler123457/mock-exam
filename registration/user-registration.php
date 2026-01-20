@@ -1,23 +1,26 @@
-<html>
-<title>User Registration</title>
+<?php
 
-<form>
+require_once '../connection.php';
 
-<label for="firstName">First Name:</label><br>
-<input type="text" id="firstName" name="firstName">
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-<label for="lastName">Last Name:</label><br>
-<input type="text" id="lastName" name="lastName">
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
+    $phoneNumber = $_POST['phoneNumber'];
 
-<label for="email">Email:</label><br>
-<input type="text" id="email" name="email">
+    $sql = "INSERT INTO customers (firstName, lastName, email, password, phoneNumber)
+    VALUES ('$firstName', '$lastName', '$email', '$password', '$phoneNumber')";
 
-<label for="password">Password:</label><br>
-<input type="text" id="password" name="password">
+    if ($conn->query($sql) === TRUE) {
+        echo "Account Created Successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 
-<label for="phoneNumber">Phone Number:</label><br>
-<input type="text" id="phoneNumber" name="phoneNumber">
+}
 
-<input type="submit" value="Submit">
+$conn->close();
 
-</html>
+?>

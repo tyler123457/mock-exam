@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/tylere/public_html/repositories/mock exam/
+    - export DEPLOYPATH=/home/tylere/public_html/repositories/mock-exam/
     - /bin/cp -R * $DEPLOYPATH
